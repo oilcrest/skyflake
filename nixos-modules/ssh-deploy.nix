@@ -143,8 +143,6 @@ let
   ];
 
   cfg = config.skyflake.deploy;
-  gcCfg = config.skyflake.gc;
-
 in {
   options.skyflake = with lib; {
     deploy = {

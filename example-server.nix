@@ -34,7 +34,7 @@
   networking.hostName = "example${toString instance}";
   users.users.root.password = "";
 
-  # TODO:
+  # TODO:? Shoulld firewall be fixed?
   networking.firewall.enable = false;
 
   networking.useDHCP = false;
@@ -64,7 +64,9 @@
           IPv6AcceptRA = true;
         };
         addresses = [ {
-          addressConfig.Address = "fec0::${toString instance}/64";
+          # TODO: addressConfig needs to be removed.
+          # trace: warning: Using 'addressConfig' is deprecated! Move all attributes inside one level up and remove it.
+          addressConfig.Address = "fec0::${toString instance}/64"; # 
         } ];
       };
     };
@@ -78,7 +80,7 @@
       }) [ 1 2 3 ]
     );
 
-    storage.ceph = rec {
+    storage.ceph = {
       fsid = "8364da79-5e03-49ae-82ea-7d936278cb0f";
       monKeyring = example/ceph.mon.keyring;
       adminKeyring = example/ceph.client.admin.keyring;
